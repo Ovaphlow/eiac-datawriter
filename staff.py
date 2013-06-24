@@ -1,7 +1,11 @@
 #coding=utf-8
 
+import sys
 import mysql.connector
 import funx
+
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 cnx1_cfg = {
   'user': 'root',
@@ -72,6 +76,7 @@ if __name__ == '__main__':
     authority(lastid)
     print funx.get_time(), '编号', lastid, '添加完毕'
 
+  print funx.get_time(), '所有数据添加完毕'
   cursor1.close()
   cnx1.close()
   cursor2.close()

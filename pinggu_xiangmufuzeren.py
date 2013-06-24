@@ -5,7 +5,7 @@ import mysql.connector
 import funx
 
 reload(sys)
-sys.setdefaultencoding('utf-8')
+sys.setdefaultencoding("utf-8")
 
 cnx1_cfg = {
   'user': 'root',
@@ -22,7 +22,7 @@ cnx2_cfg = {
 }
 
 def init_data():
-  sql1_text = 'truncate table pinggu_xiangmufuzeren'
+  sql1_text = 'TRUNCATE TABLE pinggu_xiangmufuzeren'
   cursor1.execute(sql1_text)
   cnx1.commit()
   print funx.get_time(), '数据表已清空'
@@ -128,7 +128,7 @@ if __name__ == '__main__':
     xiuzheng_shanggangzheng(lastid)
     print funx.get_time(), '编号', lastid,'添加完毕'
 
-  print funx.get_time(), '全部完成'
+  print funx.get_time(), '所有数据添加完毕'
   cursor1.close()
   cnx1.close()
   cursor2.close()
