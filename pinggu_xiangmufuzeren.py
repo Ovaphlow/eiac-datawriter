@@ -51,7 +51,6 @@ def fuzeren(row_data):
   return cursor1.lastrowid
 
 def xiuzheng_leibie(row_data, lastid):
-  #aa = replace('None', 'NULL')
   sql2_text = ('SELECT * '
                'FROM tbs001_basicdatasub '
                'WHERE id='
@@ -66,6 +65,42 @@ def xiuzheng_leibie(row_data, lastid):
                  'WHERE id='
                  '%s')
     sql1_data = (row[2], lastid)
+    cursor1.execute(sql1_text, sql1_data)
+    cnx1.commit()
+
+def xiuzheng_zigezheng(lastid):
+  sql1_text = ('SELECT * '
+               'FROM pinggu_xiangmufuzeren '
+               'WHERE id=%s')
+  sql1_data = (lastid,)
+  cursor1.execute(sql1_text, sql1_data)
+  row = cursor1.fetchone()
+  if row[5] != '' and row[5] != None:
+    text = row[5].upper().replace('附件\\', '')
+    text = text.replace('CERTIFICATEPIC.JPG', '')
+    text = text.replace('CERTIFICATEPIC.PNG', '')
+    sql1_text = ('UPDATE pinggu_xiangmufuzeren '
+                 'SET ZiGeZhengBianHao=%s'
+                 'WHERE id=%s')
+    sql1_data = (text, lastid)
+    cursor1.execute(sql1_text, sql1_data)
+    cnx1.commit()
+
+def xiuzheng_shanggangzheng(lastid):
+  sql1_text = ('SELECT * '
+               'FROM pinggu_xiangmufuzeren '
+               'WHERE id=%s')
+  sql1_data = (lastid,)
+  cursor1.execute(sql1_text, sql1_data)
+  row = cursor1.fetchone()
+  if row[6] != '' and row[6] != None:
+    text = row[5].upper().replace('附件\\', '')
+    text = text.replace('APPOINTMENTCARDPIC.JPG', '')
+    text = text.replace('APPOINTMENTCARDPIC.PNG', '')
+    sql1_text = ('UPDATE pinggu_xiangmufuzeren '
+                 'SET ShangGangZhengBianHao=%s'
+                 'WHERE id=%s')
+    sql1_data = (text, lastid)
     cursor1.execute(sql1_text, sql1_data)
     cnx1.commit()
 
@@ -89,6 +124,8 @@ if __name__ == '__main__':
   for row2 in rows2:
     lastid = fuzeren(row2)
     xiuzheng_leibie(row2, lastid)
+    xiuzheng_zigezheng(lastid)
+    xiuzheng_shanggangzheng(lastid)
     print funx.get_time(), '编号', lastid,'添加完毕'
 
   print funx.get_time(), '全部完成'
