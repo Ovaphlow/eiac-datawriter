@@ -81,7 +81,8 @@ if __name__ == '__main__':
 
   sql2_text = ('SELECT * FROM tbs001_projectleader '
                'JOIN tbs001_evaluationunit '
-               'ON (tbs001_projectleader.unitid=tbs001_evaluationunit.id) '
+               'ON (tbs001_projectleader.unitid='
+               'tbs001_evaluationunit.id) '
                'ORDER BY tbs001_projectleader.id')
   cursor2.execute(sql2_text)
   rows2 = cursor2.fetchall()
