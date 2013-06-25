@@ -1,54 +1,69 @@
-#coding=utf-8
+# -*- coding:utf-8 -*-
 
+import sys
 import mysql.connector
+import funx
+
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 cnx1_cfg = {
   'user': 'root',
-  'password': '',
-  'host': '127.0.0.1',
-  'database': 'emsdatabase',
-}
-
-cnx2_cfg = {
-  'user': 'root',
-  'password': '',
+  'password': 'dsdfjk',
   'host': '127.0.0.1',
   'database': 'eiac-sys',
 }
 
-def export():
-  cnx1 = mysql.connector.Connect(**cnx1_cfg)
-  cursor1 = cnx1.cursor()
-  cnx2 = mysql.connector.Connect(**cnx2_cfg)
-  cursor2 = cnx2.cursor()
-  sql_text1 = 'SELECT * FROM tbs001_expert'
-  cursor1.execute(sql_text1)
-  data1 = cursor1.fetchall()
+cnx2_cfg = {
+  'user': 'root',
+  'password': 'dsdfjk',
+  'host': '127.0.0.1',
+  'database': 'emsdatabase',
+}
 
-  for i in range(0, cursor1.rowcount):
-    sql_text2 = ('INSERT INTO zhuanjia '
-                 '(XingMing, XingBie, ZhiWu, ShenFenZheng, ChuShengRiQi, DanWei, YiDongDianHua, GuDingDianHua, ChuanZhen, DianYou, YuanDanWei, ZhuanJiaLeiBie, HangYeLeiBie, PingGuLeiBie, TuiJianRen, JianJie) '
-                 'VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)')
-    sql_data2 = (data1[i][1],
-                 data1[i][2],
-                 data1[i][3],
-                 data1[i][5],
-                 data1[i][4],
-                 data1[i][6],
-                 data1[i][7],
-                 data1[i][8],
-                 data1[i][9],
-                 data1[i][10],
-                 data1[i][11],
-                 data1[i][12],
-                 data1[i][13],
-                 data1[i][14],
-                 data1[i][15],
-                 data1[i][16])
-    cursor2.execute(sql_text2, sql_data2)
-    cnx2.commit()
-    print data1[i][1]
-  cursor1.close()
+def init_data():
+  cnx1_sql = 'TRUNCATE TABLE zhuanjia'
+  cnx1_cursor.execute(cnx1_sql)
+  cnx1.commit()
+  print funx.get_time(), '数据表已清空'
+
+if __name__ == '__main__':
+  print funx.get_time(), '初始化...'
+  cnx1 = mysql.connector.Connect(**cnx1_cfg)
+  cnx1_cursor = cnx1.cursor()
+  cnx2 = mysql.connector.Connect(**cnx2_cfg)
+  cnx2_cursor = cnx2.cursor()
+  print funx.get_time(), '数据库已连接'
+
+  init_data()
+
+  cnx2_sql = 'SELECT * FROM tbs001_expert'
+  cnx2_cursor.execute(cnx2_sql)
+  cnx2_data = cnx2_cursor.fetchall()
+
+  for cnx2_row in cnx2_data:
+    cnx1_sql = ('INSERT INTO zhuanjia '
+                '(XingMing, XingBie, ZhiWu, '
+                'ShenFenZheng, ChuShengRiQi, DanWei, '
+                'GangWei, YiDongDianHua, GuDingDianHua, '
+                'ChuanZhen, DianYou, ZhuanJiaLeiBie, '
+                'HangYeLeiBie, PingGuLeiBie, TuiJianRen, '
+                'JianJie) '
+                'VALUES (%s, %s, %s, %s, %s, %s, '
+                '%s, %s, %s, %s, %s, %s, '
+                '%s, %s, %s, %s)')
+    cnx1_param = (cnx2_row[1], cnx2_row[2], cnx2_row[3],
+                  cnx2_row[5], cnx2_row[4], cnx2_row[6],
+                  cnx2_row[11], cnx2_row[7], cnx2_row[8],
+                  cnx2_row[9], cnx2_row[10], cnx2_row[12],
+                  cnx2_row[13], cnx2_row[14], cnx2_row[15],
+                  cnx2_row[16])
+    cnx1_cursor.execute(cnx1_sql, cnx1_param)
+    cnx1.commit()
+    print funx.get_time(), '编号', cnx1_cursor.lastrowid, '添加完毕'
+
+  print funx.get_time(), '所有数据添加完毕'
+  cnx1_cursor.close()
   cnx1.close()
-  cursor2.close()
+  cnx2_cursor.close()
   cnx2.close()

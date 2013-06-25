@@ -193,9 +193,6 @@ def phase_config_hrb(rowid):
   cursor2.execute(sql_text2, sql_data2)
   cnx2.commit()
 
-def phase_log_hrb(rowid):
-  print funx.get_time()
-
 if __name__ == '__main__':
   print funx.get_time(), '初始化...'
   cnx1 = mysql.connector.Connect(**cnx1_cfg)
