@@ -188,12 +188,11 @@ if __name__ == '__main__':
   cnx2_sql = 'SELECT * FROM tbs001_developprojectbasicinfo'
   cnx2_cursor.execute(cnx2_sql)
   cnx2_data = cnx2_cursor.fetchall()
-  print funx.get_time(), '源数据数:', cnx2_cursor.rowcount,
-        '开始添加数据到目标数据表'
+  print funx.get_time(), '源数据数:', cnx2_cursor.rowcount, '开始添加数据到目标数据表'
 
   for cnx2_row in cnx2_data:
     rowid_last = phase_a1_hlj(cnx2_row)
-    phase_a2_hlj(rowid_last, cnx2_row[101], cnx2_row[107], 
+    phase_a2_hlj(rowid_last, cnx2_row[101], cnx2_row[107],
                  cnx2_row[118], cnx2_row[105])
     phase_a3_hlj(rowid_last, cnx2_row[100])
     phase_b1_hlj(rowid_last, cnx2_row[59], cnx2_row[58],
