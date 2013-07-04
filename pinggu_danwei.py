@@ -96,8 +96,6 @@ if __name__ == '__main__':
 
   print funx.get_time(), '添加V2黑龙江数据'
   insert_data_hlj()
-  cnx2_cursor.close()
-  cnx2.close()
 
   print funx.get_time(), '连接V2哈尔滨数据库'
   cnx3 = mysql.connector.Connect(**cnx3_cfg)
@@ -105,8 +103,6 @@ if __name__ == '__main__':
 
   print funx.get_time(), '添加V2哈尔滨数据'
   insert_data_hrb()
-  cnx3_cursor.close()
-  cnx3.close()
 
   print funx.get_time(), '添加评估单位帐号和密码'
   update_data_acc()
@@ -114,3 +110,7 @@ if __name__ == '__main__':
   print funx.get_time(), '所有数据添加完毕，关闭数据库链接'
   cnx1_cursor.close()
   cnx1.close()
+  cnx2_cursor.close()
+  cnx2.close()
+  cnx3_cursor.close()
+  cnx3.close()

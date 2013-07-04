@@ -28,37 +28,39 @@ cnx3_cfg = {
   'database': 'ems-hrb',
 }
 
+def init_data():
+  cnx1_sql = 'TRUNCATE TABLE phase_b_log'
+  cnx1_cursor.execute(cnx1_sql)
+  cnx1.commit()
+
 def insert_data_hlj():
-  cnx2_sql = 'SELECT * FROM tbs001_constructionunit'
+  cnx2_sql = 'SELECT * FROM tbs001_developprojectbasicinfo'
   cnx2_cursor.execute(cnx2_sql)
   cnx2_data = cnx2_cursor.fetchall()
 
   for cnx2_row in cnx2_data:
-    cnx1_sql = ('INSERT INTO jianshe_danwei '
-                 '(MingCheng, DianYou, DiZhi, YouBian, FaRen, '
-                 'LianXiRen, DianHua, ChuanZhen) '
-                 'VALUES (%s, %s, %s, %s, %s, %s, %s, %s)')
-    cnx1_param = (cnx2_row[1], cnx2_row[10], cnx2_row[2],
-                 cnx2_row[4], cnx2_row[8], cnx2_row[7],
-                 cnx2_row[3], cnx2_row[9])
+    cnx1_sql = ('SELECT * FROM phase_a1 '
+                'WHERE XiangMuMingCheng=%s')
+    cnx1_param = (cnx2_row[0],)
     cnx1_cursor.execute(cnx1_sql, cnx1_param)
-  cnx1.commit()
-
-def insert_data_hrb():
-  cnx3_sql = 'SELECT * FROM tbs001_constructionunit'
-  cnx3_cursor.execute(cnx3_sql)
-  cnx3_data = cnx3_cursor.fetchall()
-
-  for cnx3_row in cnx3_data:
-    cnx1_sql = ('INSERT INTO jianshe_danwei '
-                 '(MingCheng, DianYou, DiZhi, YouBian, FaRen, '
-                 'LianXiRen, DianHua, ChuanZhen) '
-                 'VALUES (%s, %s, %s, %s, %s, %s, %s, %s)')
-    cnx1_param = (cnx3_row[1], cnx3_row[10], cnx3_row[2],
-                 cnx3_row[4], cnx3_row[8], cnx3_row[7],
-                 cnx3_row[3], cnx3_row[9])
-    cnx1_cursor.execute(cnx1_sql, cnx1_param)
-  cnx1.commit()
+    cnx1_data = cnx1_cursor.fetchall()
+    if cnx1_cursor.rowcount == 0:
+      continue
+    elif cnx1_cursor.rowcount == 1:
+      pid = cnx1_data[0][0]
+    else:
+      print funx.get_time(), '数据出错！'
+      pid = cnx1_data[0][0]
+    log_yushouli(cnx2_row, pid)
+    log_shouli(cnx2_row, pid)
+    log_bumen(cnx2_row, pid)
+    log_fuzeren(cnx2_row, pid)
+    log_tacha(cnx2_row, pid)
+    log_huiyi(cnx2_row, pid)
+    log_pinggu(cnx2_row, pid)
+    log_kaoping(cnx2_row, pid)
+    log_shangbao(cnx2_row, pid)
+    print funx.get_time(), '编号', pid,'添加完毕'
 
 if __name__ == '__main__':
   print funx.get_time(), '连接V3数据库'
@@ -66,9 +68,7 @@ if __name__ == '__main__':
   cnx1_cursor = cnx1.cursor()
 
   print funx.get_time(), '清空V3数据表'
-  cnx1_sql = 'TRUNCATE TABLE jianshe_danwei'
-  cnx1_cursor.execute(cnx1_sql)
-  cnx1.commit()
+  init_data()
 
   print funx.get_time(), '连接V2黑龙江数据库'
   cnx2 = mysql.connector.Connect(**cnx2_cfg)

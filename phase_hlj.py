@@ -71,12 +71,12 @@ def phase_a1_hlj(row_data):
                '%s,%s,%s,%s,%s,%s,'
                '%s,%s,%s)')
   cnx1_param = ('提交', '黑龙江', row_data[0],
-               row_data[2], row_data[15], '',
-               row_data[4], row_data[5], row_data[12],
-               row_data[17], row_data[6], row_data[18],
-               row_data[106], row_data[7], row_data[8],
-               row_data[9], row_data[11], row_data[10],
-               '', row_data[13], row_data[102])
+                row_data[2], row_data[15], '',
+                row_data[4], row_data[5], row_data[12],
+                row_data[17], row_data[6], row_data[18],
+                row_data[106], row_data[7], row_data[8],
+                row_data[9], row_data[11], row_data[10],
+                '', row_data[13], row_data[102])
   cnx1_cursor.execute(cnx1_sql, cnx1_param)
   cnx1.commit()
   return cnx1_cursor.lastrowid
@@ -167,10 +167,10 @@ def phase_config_hlj(rowid, row_data):
                '%s,%s,%s,%s,%s,%s,'
                '%s)')
   cnx1_param = (rowid, '', row_data[103],
-               row_data[104], '0', '',
-               '', row_data[26], row_data[27],
-               row_data[28], row_data[29], row_data[144],
-               0)
+                row_data[104], '0', '',
+                '', row_data[26], row_data[27],
+                row_data[28], row_data[29], row_data[144],
+                0)
   cnx1_cursor.execute(cnx1_sql, cnx1_param)
   cnx1.commit()
 

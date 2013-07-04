@@ -100,8 +100,6 @@ if __name__ == '__main__':
 
   print funx.get_time(), '添加V2黑龙江数据'
   insert_data_hlj()
-  cnx2_cursor.close()
-  cnx2.close()
 
   print funx.get_time(), '连接V2哈尔滨数据库'
   cnx3 = mysql.connector.Connect(**cnx3_cfg)
@@ -118,3 +116,5 @@ if __name__ == '__main__':
   cnx1.close()
   cnx2_cursor.close()
   cnx2.close()
+  cnx3_cursor.close()
+  cnx3.close()

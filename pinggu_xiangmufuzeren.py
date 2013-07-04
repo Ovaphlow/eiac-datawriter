@@ -164,11 +164,10 @@ if __name__ == '__main__':
   print funx.get_time(), '修正上岗证编号'
   update_shanggangzheng()
 
-  cnx3_cursor.close()
-  cnx3.close()
-
   print funx.get_time(), '所有数据添加完毕'
   cnx1_cursor.close()
   cnx1.close()
   cnx2_cursor.close()
   cnx2.close()
+  cnx3_cursor.close()
+  cnx3.close()
