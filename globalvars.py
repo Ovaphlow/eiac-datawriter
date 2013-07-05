@@ -28,25 +28,30 @@ def get_time():
   return '[' + time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())) + ']'
 
 def trunc_jshdw():
+  cursor = cnx1.cursor()
   sql = 'TRUNCATE TABLE jianshe_danwei'
-  cnx1_cursor.execute(sql)
+  cursor.execute(sql)
   cnx1.commit()
 
 def trunc_staff():
-  cnx1_sql = 'TRUNCATE TABLE staff'
-  cnx1_cursor.execute(cnx1_sql)
-  cnx1_sql = 'TRUNCATE TABLE authority'
-  cnx1_cursor.execute(cnx1_sql)
+  cursor = cnx1.cursor()
+  sql = 'TRUNCATE TABLE staff'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE authority'
+  cursor.execute(sql)
+  cnx1.commit()
+
+def trunc_pgdw():
+  cursor = cnx1.cursor()
+  sql = 'TRUNCATE TABLE pinggu_danwei'
+  cursor.execute(sql)
   cnx1.commit()
 
 print get_time(), '连接V3数据库'
 cnx1 = mysql.connector.Connect(**cnx1_cfg)
-cnx1_cursor = cnx1.cursor()
 
 print get_time(), '连接V2黑龙江数据库'
 cnx2 = mysql.connector.Connect(**cnx2_cfg)
-cnx2_cursor = cnx2.cursor()
 
 print get_time(), '连接V2哈尔滨数据库'
 cnx3 = mysql.connector.Connect(**cnx3_cfg)
-cnx3_cursor = cnx3.cursor()

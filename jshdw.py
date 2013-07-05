@@ -3,19 +3,22 @@
 import globalvars
 
 def run():
-  print globalvars.get_time(), '清空V3建设单位表'
+  print globalvars.get_time(), '清空jianshe_danwei表'
   globalvars.trunc_jshdw()
 
-  print globalvars.get_time(), '添加建设单位数据（黑龙江）'
+  print globalvars.get_time(), '添加jianshe_danwei数据（黑龙江）'
   insert_data_hlj()
-  print globalvars.get_time(), '添加建设单位数据（哈尔滨）'
+  print globalvars.get_time(), '添加jianshe_danwei数据（哈尔滨）'
   insert_data_hrb()
 
 def insert_data_hlj():
+  cursor = globalvars.cnx2.cursor()
   sql = 'SELECT * FROM tbs001_constructionunit'
-  globalvars.cnx2_cursor.execute(sql)
-  data = globalvars.cnx2_cursor.fetchall()
+  cursor.execute(sql)
+  data = cursor.fetchall()
+  cursor.close()
 
+  cursor = globalvars.cnx1.cursor()
   for row in data:
     sql = ('INSERT INTO jianshe_danwei '
            '(MingCheng, DianYou, DiZhi, YouBian, FaRen, '
@@ -24,14 +27,18 @@ def insert_data_hlj():
            '%s, %s)')
     param = (row[1], row[10], row[2], row[4], row[8], row[7],
              row[3], row[9])
-    globalvars.cnx1_cursor.execute(sql, param)
+    cursor.execute(sql, param)
+
   globalvars.cnx1.commit()
 
 def insert_data_hrb():
+  cursor = globalvars.cnx3.cursor()
   sql = 'SELECT * FROM tbs001_constructionunit'
-  globalvars.cnx3_cursor.execute(sql)
-  data = globalvars.cnx3_cursor.fetchall()
+  cursor.execute(sql)
+  data = cursor.fetchall()
+  cursor.close()
 
+  cursor = globalvars.cnx1.cursor()
   for row in data:
     sql = ('INSERT INTO jianshe_danwei '
            '(MingCheng, DianYou, DiZhi, YouBian, FaRen, '
@@ -40,5 +47,6 @@ def insert_data_hrb():
            '%s, %s)')
     param = (row[1], row[10], row[2], row[4], row[8], row[7],
              row[3], row[9])
-    globalvars.cnx1_cursor.execute(sql, param)
+    cursor.execute(sql, param)
+
   globalvars.cnx1.commit()
