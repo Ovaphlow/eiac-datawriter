@@ -14,17 +14,17 @@ def run():
 
 def insert_data_hlj():
   cursor = globalvars.cnx2.cursor()
-  sql = ('SELECT * '
-         'FROM tbs001_huanjing '
-         'ORDER BY id')
+  sql = ( 'SELECT * '
+          'FROM tbs001_huanjing '
+          'ORDER BY id')
   cursor.execute(sql)
   data = cursor.fetchall()
 
   cursor = globalvars.cnx1.cursor()
   for row in data:
-    sql = ('SELECT * '
-           'FROM phase_a1 '
-           'WHERE XiangMuMingCheng=%s')
+    sql = ( 'SELECT * '
+            'FROM phase_a1 '
+            'WHERE XiangMuMingCheng=%s')
     param = (row[1],)
     cursor.execute(sql, param)
     data1 = cursor.fetchall()
@@ -37,13 +37,13 @@ def insert_data_hlj():
       cursor.execute(sql, param)
       row1 = cursor.fetchone()
       if row1[0] == 0:
-        sql = ('INSERT INTO phase_a4 '
-               'VALUES (%s, %s, %s, %s, %s, %s,'
-               '%s, %s, %s, %s, %s, %s,'
-               '%s, %s, %s, %s, %s, %s)')
-        param = (pid, row[2], row[3], row[4], row[5], row[6],
-                 row[7], row[8], row[9], row[10], row[11], row[12],
-                 row[13], row[14], row[15], row[16], row[17], row[18],)
+        sql = ( 'INSERT INTO phase_a4 '
+                'VALUES (%s, %s, %s, %s, %s, %s,'
+                '%s, %s, %s, %s, %s, %s,'
+                '%s, %s, %s, %s, %s, %s)')
+        param = ( pid, row[2], row[3], row[4], row[5], row[6],
+                  row[7], row[8], row[9], row[10], row[11], row[12],
+                  row[13], row[14], row[15], row[16], row[17], row[18],)
         cursor.execute(sql, param)
       else:
         pass
@@ -52,17 +52,17 @@ def insert_data_hlj():
 
 def insert_data_hrb():
   cursor = globalvars.cnx3.cursor()
-  sql = ('SELECT * '
-         'FROM tbs001_huanjing '
-         'ORDER BY id')
+  sql = ( 'SELECT * '
+          'FROM tbs001_huanjing '
+          'ORDER BY id')
   cursor.execute(sql)
   data = cursor.fetchall()
 
   cursor = globalvars.cnx1.cursor()
   for row in data:
-    sql = ('SELECT * '
-           'FROM phase_a1 '
-           'WHERE XiangMuMingCheng=%s')
+    sql = ( 'SELECT * '
+            'FROM phase_a1 '
+            'WHERE XiangMuMingCheng=%s')
     param = (row[1],)
     cursor.execute(sql, param)
     data1 = cursor.fetchall()
@@ -75,13 +75,13 @@ def insert_data_hrb():
       cursor.execute(sql, param)
       row1 = cursor.fetchone()
       if row1[0] == 0:
-        sql = ('INSERT INTO phase_a4 '
-               'VALUES (%s, %s, %s, %s, %s, %s,'
-               '%s, %s, %s, %s, %s, %s,'
-               '%s, %s, %s, %s, %s, %s)')
-        param = (pid, row[2], row[3], row[4], row[5], row[6],
-                 row[7], row[8], row[9], row[10], row[11], row[12],
-                 row[13], row[14], row[15], row[16], row[17], row[18],)
+        sql = ( 'INSERT INTO phase_a4 '
+                'VALUES (%s, %s, %s, %s, %s, %s,'
+                '%s, %s, %s, %s, %s, %s,'
+                '%s, %s, %s, %s, %s, %s)')
+        param = ( pid, row[2], row[3], row[4], row[5], row[6],
+                  row[7], row[8], row[9], row[10], row[11], row[12],
+                  row[13], row[14], row[15], row[16], row[17], row[18],)
         cursor.execute(sql, param)
       else:
         pass
