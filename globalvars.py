@@ -101,6 +101,24 @@ def trunc_log():
   cursor.execute(sql)
   cnx1.commit()
 
+def trunc_a4():
+  cursor = cnx1.cursor()
+  sql = 'TRUNCATE TABLE phase_a4'
+  cursor.execute(sql)
+  cnx1.commit()
+
+def trunc_a5():
+  cursor = cnx1.cursor()
+  sql = 'TRUNCATE TABLE phase_a5'
+  cursor.execute(sql)
+  cnx1.commit()
+
+def trunc_a6():
+  cursor = cnx1.cursor()
+  sql = 'TRUNCATE TABLE phase_a6'
+  cursor.execute(sql)
+  cnx1.commit()
+
 print get_time(), '连接V3数据库'
 cnx1 = mysql.connector.Connect(**cnx1_cfg)
 
