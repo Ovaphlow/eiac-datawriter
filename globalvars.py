@@ -47,6 +47,60 @@ def trunc_pgdw():
   cursor.execute(sql)
   cnx1.commit()
 
+def trunc_xmfzr():
+  cursor = cnx1.cursor()
+  sql = 'TRUNCATE TABLE pinggu_xiangmufuzeren'
+  cursor.execute(sql)
+  cnx1.commit()
+
+def trunc_zhuanjia():
+  cursor = cnx1.cursor()
+  sql = 'TRUNCATE TABLE zhuanjia'
+  cursor.execute(sql)
+  cnx1.commit()
+
+def trunc_phase():
+  cursor = cnx1.cursor()
+  sql = 'TRUNCATE TABLE phase_a1'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE phase_a2'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE phase_a3'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE phase_a4'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE phase_a5'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE phase_a6'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE phase_b1'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE phase_b2'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE phase_b3'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE phase_b4'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE phase_b4'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE phase_b5'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE phase_b6'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE phase_b7'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE phase_b8'
+  cursor.execute(sql)
+  sql = 'TRUNCATE TABLE phase_config'
+  cursor.execute(sql)
+  cnx1.commit()
+
+def trunc_log():
+  cursor = cnx1.cursor()
+  sql = 'TRUNCATE TABLE phase_b_log'
+  cursor.execute(sql)
+  cnx1.commit()
+
 print get_time(), '连接V3数据库'
 cnx1 = mysql.connector.Connect(**cnx1_cfg)
 

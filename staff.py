@@ -22,7 +22,6 @@ def insert_data_hlj():
          'AND roleid!="环评单位"')
   cursor.execute(sql)
   data = cursor.fetchall()
-  cursor.close()
 
   cursor = globalvars.cnx1.cursor()
   for row in data:
@@ -46,7 +45,6 @@ def insert_data_hrb():
          'AND roleid!="环评单位"')
   cursor.execute(sql)
   data = cursor.fetchall()
-  cursor.close()
 
   cursor = globalvars.cnx1.cursor()
   for row in data:
