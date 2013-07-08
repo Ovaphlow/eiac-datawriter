@@ -26,8 +26,8 @@ def insert_data_hlj():
 
   cursor = globalvars.cnx1.cursor()
   for row in data:
-    sql = ('SELECT * FROM phase_a1 '
-           'WHERE XiangMuMingCheng=%s')
+    sql = ( 'SELECT * FROM phase_a1 '
+            'WHERE XiangMuMingCheng=%s')
     param = (row[0],)
     cursor.execute(sql, param)
     data1 = cursor.fetchall()
@@ -58,8 +58,8 @@ def insert_data_hrb():
 
   cursor = globalvars.cnx1.cursor()
   for row in data:
-    sql = ('SELECT * FROM phase_a1 '
-           'WHERE XiangMuMingCheng=%s')
+    sql = ( 'SELECT * FROM phase_a1 '
+            'WHERE XiangMuMingCheng=%s')
     param = (row[0],)
     cursor.execute(sql, param)
     data1 = cursor.fetchall()
@@ -84,63 +84,67 @@ def insert_data_hrb():
 
 def log_yushouli(row, id):
   cursor = globalvars.cnx1.cursor()
-  sql = ('INSERT INTO phase_b_log '
-         'VALUES (%s, %s, %s, %s, %s, %s)')
-  param = (id, row[55], '', row[54], '1', '预受理')
+  sql = ( 'INSERT INTO phase_b_log '
+          'VALUES (%s, %s, %s, %s, %s, %s)')
+  param = (id, row[119], '', row[62], '0', '预受理')
+  cursor.execute(sql, param)
+  sql = ( 'INSERT INTO phase_b_log '
+          'VALUES (%s, %s, %s, %s, %s, %s)')
+  param = (id, row[119], '', row[136], '0', '核定金额')
   cursor.execute(sql, param)
 
 def log_shouli(row, id):
   cursor = globalvars.cnx1.cursor()
-  sql = ('INSERT INTO phase_b_log '
-         'VALUES (%s, %s, %s, %s, %s, %s)')
+  sql = ( 'INSERT INTO phase_b_log '
+          'VALUES (%s, %s, %s, %s, %s, %s)')
   param = (id, row[57], '', row[56], '1', '受理')
   cursor.execute(sql, param)
 
 def log_bumen(row, id):
   cursor = globalvars.cnx1.cursor()
-  sql = ('INSERT INTO phase_b_log '
-         'VALUES (%s, %s, %s, %s, %s, %s)')
+  sql = ( 'INSERT INTO phase_b_log '
+          'VALUES (%s, %s, %s, %s, %s, %s)')
   param = (id, row[65], '', row[64], '2', '确认')
   cursor.execute(sql, param)
 
 def log_fuzeren(row, id):
   cursor = globalvars.cnx1.cursor()
-  sql = ('INSERT INTO phase_b_log '
-         'VALUES (%s, %s, %s, %s, %s, %s)')
+  sql = ( 'INSERT INTO phase_b_log '
+          'VALUES (%s, %s, %s, %s, %s, %s)')
   param = (id, row[70], '', row[68], '3', '确认')
   cursor.execute(sql, param)
 
 def log_tacha(row, id):
   cursor = globalvars.cnx1.cursor()
-  sql = ('INSERT INTO phase_b_log '
-         'VALUES (%s, %s, %s, %s, %s, %s)')
+  sql = ( 'INSERT INTO phase_b_log '
+          'VALUES (%s, %s, %s, %s, %s, %s)')
   param = (id, row[78], '', row[77], '4', '确认')
   cursor.execute(sql, param)
 
 def log_huiyi(row, id):
   cursor = globalvars.cnx1.cursor()
-  sql = ('INSERT INTO phase_b_log '
-         'VALUES (%s, %s, %s, %s, %s, %s)')
+  sql = ( 'INSERT INTO phase_b_log '
+          'VALUES (%s, %s, %s, %s, %s, %s)')
   param = (id, row[86], '', row[85], '5', '确认')
   cursor.execute(sql, param)
 
 def log_pinggu(row, id):
   cursor = globalvars.cnx1.cursor()
-  sql = ('INSERT INTO phase_b_log '
-         'VALUES (%s, %s, %s, %s, %s, %s)')
+  sql = ( 'INSERT INTO phase_b_log '
+          'VALUES (%s, %s, %s, %s, %s, %s)')
   param = (id, row[88], '', row[87], '6', '确认')
   cursor.execute(sql, param)
 
 def log_kaoping(row, id):
   cursor = globalvars.cnx1.cursor()
-  sql = ('INSERT INTO phase_b_log '
-         'VALUES (%s, %s, %s, %s, %s, %s)')
+  sql = ( 'INSERT INTO phase_b_log '
+          'VALUES (%s, %s, %s, %s, %s, %s)')
   param = (id, row[95], '', row[94], '7', '确认')
   cursor.execute(sql, param)
 
 def log_shangbao(row, id):
   cursor = globalvars.cnx1.cursor()
-  sql = ('INSERT INTO phase_b_log '
-         'VALUES (%s,%s,%s,%s,%s,%s)')
+  sql = ( 'INSERT INTO phase_b_log '
+          'VALUES (%s,%s,%s,%s,%s,%s)')
   param = (id, row[115], '', row[112], '8', '确认')
   cursor.execute(sql, param)
