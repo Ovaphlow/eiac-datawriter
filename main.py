@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
   #jshdw.run()
 
-  staff.run()
+  #staff.run()
 
   #pgdw.run()
 
@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
   #zhuanjia.run()
 
-  #phase.run()
+  phase.run()
 
   #phase_log.run()
 
