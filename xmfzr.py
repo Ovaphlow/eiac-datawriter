@@ -50,11 +50,11 @@ def insert_data_hlj():
 
 def insert_data_hrb():
   cursor = globalvars.cnx3.cursor()
-  sql = ('SELECT * FROM tbs001_projectleader '
-              'JOIN tbs001_evaluationunit '
-              'ON (tbs001_projectleader.unitid='
-              'tbs001_evaluationunit.id) '
-              'ORDER BY tbs001_projectleader.id')
+  sql = ( 'SELECT * FROM tbs001_projectleader '
+          'JOIN tbs001_evaluationunit '
+          'ON (tbs001_projectleader.unitid='
+          'tbs001_evaluationunit.id) '
+          'ORDER BY tbs001_projectleader.id')
   cursor.execute(sql)
   data = cursor.fetchall()
 
