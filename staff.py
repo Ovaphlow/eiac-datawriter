@@ -55,11 +55,67 @@ def insert_data_hrb():
            '(XingMing, ZhangHao, MiMa, '
            'DianHua, ZhiWu, DiQu, '
            'DanWei) '
-           'VALUES (%s, %s, %s, %s, %s, %s,'
+           'VALUES (%s, %s, %s, %s, %s, cu%s,'
            '%s)')
     param = (row[1], row[2], row[3], row[4], row[5], '哈尔滨',
              '环评中心')
     cursor.execute(sql, param)
+
+  globalvars.cnx1.commit()
+
+def update_bumen():
+  cursor = globalvars.cnx1.cursor()
+  sql = ( 'SELECT * FROM staff '
+          'WHERE ZhiWu LIKE "%中心领导%" OR '
+          'ZhiWu LIKE "%部门负责人%" OR '
+          'ZhiWu LIKE "%受理人%" OR '
+          'ZhiWu LIKE "%项目负责人%"')
+  cursor.execute(sql)
+  data = cursor.fetchall()
+
+  for row in data:
+    if row[7] == u"黑龙江":
+      cursor = globalvars.cnx2.cursor()
+      sql = 'SELECT * FROM tbs001_user WHERE UserName=%s'
+      param = (row[1],)
+      cursor.execute(sql, param)
+      data_user = cursor.fetchall()
+      user_id = data_user[0][0]
+      sql = ( 'SELECT * FROM tbs001_executivedepartment '
+              'WHERE ed_user LIKE "%' + str(user_id) + '%"')
+      cursor.execute(sql)
+      data_bumen = cursor.fetchall()
+      str_bumen = ''
+      for row_bumen in data_bumen:
+        str_bumen = str_bumen + row_bumen[1]+ ',' 
+      cursor = globalvars.cnx1.cursor()
+      sql = ( 'UPDATE staff '
+              'SET BuMen=%s '
+              'WHERE id=%s')
+      param = (str_bumen, row[0])
+      cursor.execute(sql, param)
+    elif row[7] == u"哈尔滨":
+      cursor = globalvars.cnx3.cursor()
+      sql = 'SELECT * FROM tbs001_user WHERE UserName=%s'
+      param = (row[1],)
+      cursor.execute(sql, param)
+      data_user = cursor.fetchall()
+      user_id = data_user[0][0]
+      sql = ( 'SELECT * FROM tbs001_executivedepartment '
+              'WHERE ed_user LIKE "%' + str(user_id) + '%"')
+      cursor.execute(sql)
+      data_bumen = cursor.fetchall()
+      str_bumen = ''
+      for row_bumen in data_bumen:
+        str_bumen = str_bumen + row_bumen[1]+ ',' 
+      cursor = globalvars.cnx1.cursor()
+      sql = ( 'UPDATE staff '
+              'SET BuMen=%s '
+              'WHERE id=%s')
+      param = (str_bumen, row[0])
+      cursor.execute(sql, param)
+    else:
+      pass
 
   globalvars.cnx1.commit()
 
@@ -72,7 +128,7 @@ def insert_authority():
   for row in data:
     sql = ('INSERT INTO authority '
            '(staff_id) '
-           'VALUES (%s)')
+           'VALUES (%s)') 
     param = (row[0],)
     cursor.execute(sql, param)
 
@@ -146,3 +202,6 @@ def update_authortity():
     cursor.execute(sql, param)
 
   globalvars.cnx1.commit()
+
+if __name__ == "__main__":
+  update_bumen()

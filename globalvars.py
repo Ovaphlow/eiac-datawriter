@@ -11,16 +11,16 @@ cnx1_cfg = {
 }
 
 cnx2_cfg = {
-  'user': 'root',
-  'password': 'dsdfjk',
-  'host': '127.0.0.1',
+  'user': 'cmtech',
+  'password': 'cmtech.1123',
+  'host': '125.211.221.215',
   'database': 'emsdatabase',
 }
 
 cnx3_cfg = {
-  'user': 'root',
-  'password': 'dsdfjk',
-  'host': '127.0.0.1',
+  'user': 'cmtech',
+  'password': 'cmtech.1123',
+  'host': '125.211.221.215',
   'database': 'ems-hrb',
 }
 
