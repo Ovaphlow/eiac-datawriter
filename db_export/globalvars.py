@@ -4,23 +4,23 @@ import time
 import mysql.connector
 
 cnx1_cfg = {
-  'user': 'cmtech',
-  'password': 'cmtech.1123',
-  'host': '125.211.221.215',
+  'user': 'root',
+  'password': 'dsdfjk',
+  'host': '127.0.0.1',
   'database': 'eiac-sys',
 }
 
 cnx2_cfg = {
-  'user': 'cmtech',
-  'password': 'cmtech.1123',
-  'host': '125.211.221.215',
+  'user': 'root',
+  'password': 'dsdfjk',
+  'host': '127.0.0.1',
   'database': 'emsdatabase',
 }
 
 cnx3_cfg = {
-  'user': 'cmtech',
-  'password': 'cmtech.1123',
-  'host': '125.211.221.215',
+  'user': 'root',
+  'password': 'dsdfjk',
+  'host': '127.0.0.1',
   'database': 'ems-hrb',
 }
 
