@@ -6,9 +6,9 @@ import xml.dom.minidom
 xmlFile = 'HuanPingLeiBie.xml'
 rootName = 'root'
 
-config_database = {
+cnx_cfg = {
   'user': 'root',
-  'password': '',
+  'password': 'dsdfjk',
   'host': '127.0.0.1',
   'database': 'ems-hrb',
 }

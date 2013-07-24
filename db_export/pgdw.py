@@ -62,10 +62,10 @@ def update_data_acc():
   cursor.execute(sql)
   data = cursor.fetchall()
   for row in data:
-    sql = ('UPDATE pinggu_danwei '
-           'SET '
-           'ZhangHao=%s,MiMa=%s '
-           'WHERE id=%s')
+    sql = ( 'UPDATE pinggu_danwei '
+            'SET '
+            'ZhangHao=%s,MiMa=%s '
+            'WHERE id=%s')
     param = (row[0], '123456', row[0])
     cursor.execute(sql, param)
   globalvars.cnx1.commit()
